@@ -1,15 +1,35 @@
 const express = require("express");
 
 const rotas = express.Router();
+const Checklist = require('../model/checklist')
 
-rotas.get("/",(req, res)=>{
-    console.log('estou no checklist')
-    res.send()
+rotas.get("/", async(req, res)=>{
+    try {
+        let checklist = await Checklist.find({});
+        res.status(200).json(checklist)
+    } catch (error) {
+        res.status(422).json(error)
+    }
 });
 
-rotas.post("/",(req,res)=>{
-    console.log(req.body)
-    res.status(200).send(req.body)
+rotas.get("/:id", async(req, res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+});
+
+rotas.post("/", async(req,res)=>{
+    let {nome} = req.body;
+
+    try {
+      let checklist = await Checklist.create({nome})
+      res.status(200).json(checklist)
+    } catch (error) {
+        res.status(422).json(error)
+    }
+    
 });
 
 module.exports = rotas;
