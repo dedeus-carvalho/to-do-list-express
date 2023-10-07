@@ -1,14 +1,14 @@
-<%- include('../layouts/header') %>
-<%- include('../layouts/menu') %>
+<%- include('../layouts/header', {titulo:'TODO-list'}) %>
+<%- include('../layouts/menu', {nome: 'francisco'}) %>
     
 <section class="section hero is-link is-fullheight-with-navbar">
-    <div class="hero-body has-test-centered">
+    <div class="hero-body has-text-centered">
         <div class="container">
             <h1 class="title">TODO LIST</h1>
             <h2 class="subtitle">Gerenciando nossas atividaes diarias</h2>
-            <a href="list-checklists.html" class="button is-ligth is-medium">Ir para lista de atividades</a>
+            <a href="/checklist" class="button is-ligth is-medium">Ir para lista de atividades</a>
         </div>
     </div>
 </section>
 
-<%- include('../layouts/footer') %>
+<%- include('../layouts/footer', {}) %>

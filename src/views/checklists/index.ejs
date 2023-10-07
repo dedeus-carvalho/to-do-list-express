@@ -1,0 +1,44 @@
+<%- include('../layouts/header', {titulo:'Lista de Tarefas'}) %>
+<%- include('../layouts/menu', {nome: 'francisco'}) %>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-four-fifths">
+                <h1 class="title size-4">Lista de Tarefas</h1>
+            </div>
+            <div class="column is-one-fifth">
+                <a href="checklist-form.html" class="button  is-success  is-small">Nova Lista</a>
+            </div>
+        </div>
+        <div class="columns">
+            <% checklist.forEach(checklist =>{ %>
+            <div class="column is-one-quarter">
+                <div class="card has-beckground-white-ter">
+                    <div class="card-content">
+                        <p class="subtitle is-size-5">
+                            <%= checklist.nome %>
+                        </p>
+                        <p class="subtitle is-size-6">
+                            <%= checklist.task.count %> tarefas
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                            <spam><a href="/checklist/<%= checklist._id %>">Ver</a></spam>
+                        </p>
+                        <p class="card-footer-item">
+                            <spam><a href="checklist-form.ejs">Editar</a></spam>
+                        </p>
+                        <p class="card-footer-item">
+                            <spam><a href="#" class="has-text-danger">Remover</a></spam>
+                        </p>
+                    </footer>
+                </div>    
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<%- include('../layouts/footer', {}) %>
