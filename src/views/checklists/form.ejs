@@ -1,0 +1,13 @@
+<form action="<%= url %>" method="post">
+    <div class="field">
+        <label for="" class="label">Nome</label>
+        <div class="control">
+            <input name="checklist[nome]" type="text" class="input" value="<%= checklist %>">
+            <% if(checklist.error) { %>
+                <p class="is-danger help"><%= checklist.error.nome.mensage %></p>
+            <% }%>    
+        </div>
+    </div>
+    <button type="submit" class="button is-success">Salvar</button>
+    <a href="/checklist" class="button">Cancelar</a>
+</form>
