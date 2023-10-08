@@ -1,6 +1,14 @@
 <%- include('../layouts/header', {titulo:'Editar de Tarefas'}) %>
 <%- include('../layouts/menu') %>
 
-<h1>Pagina de erros</h1>
+<section class="section hero is-danger is-fullheight-with-navbar">
+    <div class="hero-body has-text-centered">
+        <div class="container">
+            <h1 class="title">Ops! algo deu errado</h1>
+            <h2 class="subtitle"><%= error %></h2>
+            <a href="/checklist" class="button is-ligth is-medium">Ir para lista de tarefas</a>
+        </div>
+    </div>
+</section>
 
 <%- include('../layouts/footer', {}) %>
