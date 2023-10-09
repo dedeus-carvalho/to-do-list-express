@@ -4,6 +4,7 @@ const methodoverrid = require('method-override');
 
 
 const rotaChecklist = require('./src/rotas/checklist');
+const rotaTask = require("./src/rotas/task")
 const rootRouter = require('./src/rotas/index');
 require("./config/database");
 
@@ -20,6 +21,8 @@ app.set('view engine', 'ejs');
 
 app.use("/", rootRouter);
 app.use("/checklist", rotaChecklist);
+app.use("/checklist", rotaTask.checkListDependent);
+app.use("/task", rotaTask.simples)
 
 app.listen(3000, () => {
     console.log("Servidor iniciado!")

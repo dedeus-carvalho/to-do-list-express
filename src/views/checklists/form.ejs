@@ -2,7 +2,7 @@
     <div class="field">
         <label for="" class="label">Nome</label>
         <div class="control">
-            <input name="checklist[nome]" type="text" class="input" value="<%= checklist %>">
+            <input name="checklist[nome]" type="text" class="input" value="<%= checklist.nome %>">
             <% if(checklist.error) { %>
                 <p class="is-danger help"><%= checklist.error.nome.mensage %></p>
             <% }%>    

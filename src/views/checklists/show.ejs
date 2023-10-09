@@ -8,8 +8,8 @@
                 <h1 class="title size-4"><%= checklist.nome %></h1>
             </div>
             <div class="column is-one-fifth">
-                <a href="add-atsk.html" class="button is-samll is-success">Nova Tarefa</a>
-                <a href="index.ejs" class="button is-samll">voltar</a>
+                <a href="/<%= checklist._id %>/task/new" class="button is-samll is-success">Nova Tarefa</a>
+                <a href="/checklist" class="button is-samll">voltar</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
                 <input type="checkbox"/> <%= task.nome %>
             </div>
             <div class="column is-one-fifth">
-                <button class="button is-danger is-samll">Remover</button>
+                <a href="/task/<%= task._id %>?_method=delete" class="button is-danger is-samll">Remover</a>
             </div>
         </div>
     <% }) %>

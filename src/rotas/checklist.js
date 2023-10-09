@@ -12,18 +12,9 @@ rotas.get("/", async(req, res)=>{
     }
 });
 
-rotas.get("/:id", async(req, res)=>{
-    try {
-        let checklist = await Checklist.findById(req.params.id)
-        res.status(200).render('checklists/show',{checklist: checklist})
-    } catch (error) {
-        res.status(422).render('pages/error',  {error: 'erro ao acessar esse usuario'})
-    }
-});
-
 rotas.get('/new', async (req, res)=>{
     try {
-        let checklist = new Checklist()
+        let checklist = await new Checklist()
         res.status(200).render('checklists/new',{checklist:checklist})
     } catch (error) {
         res.status(500).render('pages/error', {errors: 'Erro ao carregar o formulario'})
@@ -44,22 +35,31 @@ rotas.post("/", async(req,res)=>{
     let checklist = new Checklist({nome})
     try {
       await checklist.save()  
-      res.redirect('checklist')
+      res.redirect('/checklist')
     } catch (error) {
-        res.status(422).render('checklists/new',{checklist:{...checklist, error}})
+        res.status(422).render('checklists/new',{checklist: {...checklist, error}})
     }
     
 });
 
-rotas.put("/:id", async(req, res)=>{
-    let {nome} = req.body.Checklist
+rotas.get("/:id", async(req, res)=>{
+    try {
+        let checklist = await Checklist.findById(req.params.id).populate('tasks')
+        res.status(200).render('checklists/show',{checklist: checklist})
+    } catch (error) {
+        res.status(422).render('pages/error',  {error: 'erro ao acessar esse usuario'})
+    }
+});
+
+rotas.put('/:id', async (req, res) => {
+    let {nome} = req.body.checklist
     let checklist = await Checklist.findById(req.params.id)
     try {
-        await checklist.Update({nome});
-        res.redirect('/checklists')
+        await checklist.updateOne({nome})
+        res.redirect('/checklist')
     } catch (error) {
         let errors = error.errors;
-        res.status(422).render('checklist/edit', {checklist:{...checklist, errors}}) 
+        res.status(422).render('checklists/edit', {checklist:{...checklist, errors}}) 
     }
 })
 
