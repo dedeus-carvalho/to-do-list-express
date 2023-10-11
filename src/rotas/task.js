@@ -34,14 +34,14 @@ checkListDependentRota.post("/:id/tasks", async(req, res)=>{
 
 rotaSimples.delete("/:id", async (req, res)=>{
     try {
-        let taks = await Task.findByIdAndDelete(req.params.id);
+        let task = await Task.findByIdAndDelete(req.params.id);
         let checklist = await Checklist.findById(task.checklist);
         let taskToRemove = checklist.task.indexOf(task._id);
         checklist.task.splice(taskToRemove, 1);
         checklist.save();
-        res.redirect(`/checklists${checklist._id}`)
+        res.redirect(`/checklist/${checklist._id}`)
     } catch (error) {
-        res.status(422).render('pages/error',{errors:'erro ao remover uma tarefa'})
+        res.status(422).render('pages/error',{error:'erro ao remover uma tarefa'})
     }
 })
 
