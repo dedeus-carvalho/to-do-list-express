@@ -44,7 +44,7 @@ rotas.post("/", async(req,res)=>{
 
 rotas.get("/:id", async(req, res)=>{
     try {
-        let checklist = await Checklist.findById(req.params.id).populate('tasks')
+        let checklist = await Checklist.findById(req.params.id).populate('task')
         res.status(200).render('checklists/show',{checklist: checklist})
     } catch (error) {
         res.status(422).render('pages/error',  {error: 'erro ao acessar esse usuario'})

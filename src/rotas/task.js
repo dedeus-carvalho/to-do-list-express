@@ -8,26 +8,27 @@ const Task = require('../model/task');
 const task = require("../model/task");
 
 
-checkListDependentRota.get('/:id/task/new', async(req, res)=>{
+checkListDependentRota.get('/:id/tasks/new', async(req, res)=>{
     try {
-        let task = new Task();
-        res.status(200).render('taskes/new',{ChecklistId: req.params.id, task:task})
+        let task = await new Task();
+        res.status(200).render('tasks/new',{checklistId: req.params.id, task:task})
     } catch (error) {
         res.status(422).render('pages/error',{errors:'erro ao criar nova tarefa'})
     }
 })
 
-checkListDependentRota.post("/:id/task", async(req, res)=>{
+checkListDependentRota.post("/:id/tasks", async(req, res)=>{
     let {nome} = req.body.task;
-    let task = new Task({nome, Checklist: req.params.id});
+    let task = new Task({nome, checklist: req.params.id});
     try {
         await task.save();
         let checklist = await Checklist.findById(req.params.id)
         checklist.task.push(task);
         await checklist.save();
+        res.redirect('/checklist')
     } catch (error) {
         let errors = error.errors
-        res.status(422).render('tasks/new',{task: {...task,errors}, ChecklistId: req.params.id})
+        res.status(422).render('tasks/new',{task: {...task,errors}, checklistId: req.params.id})
     }
 })
 

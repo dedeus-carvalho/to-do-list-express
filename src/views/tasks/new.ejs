@@ -5,7 +5,7 @@
     <div class="container">
         <h1 class="tittle size-4">Nova Tarefa</h1>
 
-        <form action="/checklist/<%= ChecklistId %>/tasks" method="post">
+        <form action="/checklist/<%= checklistId %>/tasks" method="post">
             <div class="field">
                 <label for="" class="label">Nome</label>
                 <div class="control">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <button type="submit" class="button is-success">Salvar</button>
-            <a href="/checklist/<%= ChecklistId %>" class="button">Cancelar</a>
+            <a href="/checklist/<%= checklistId %>" class="button">Cancelar</a>
         </form>
 
     </div>
